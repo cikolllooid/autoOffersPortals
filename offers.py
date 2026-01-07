@@ -3,6 +3,11 @@ import random
 import logging
 import requests
 import redis
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+AUTH_TOKEN = os.getenv("Authorization")
 
 first_offer_time = None
 my_balance = 0
@@ -21,7 +26,7 @@ HEADERS_COMMON = {
     "Host": "portal-market.com",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0",
     "Accept": "application/json, text/plain, */*",
-    "Authorization": "YOUR AUTH TOKEN FROM BURPSUITE",
+    "Authorization": AUTH_TOKEN,
 }
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
