@@ -21,7 +21,7 @@ HEADERS_COMMON = {
     "Host": "portal-market.com",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0",
     "Accept": "application/json, text/plain, */*",
-    "Authorization": "YOUR auth from burpsuite",
+    "Authorization": "YOUR AUTH TOKEN FROM BURPSUITE",
 }
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
@@ -155,14 +155,13 @@ def process_collection():
                 logging.info(f"⏭️  NFT #{idx}: уже обработан ранее")
                 continue
 
-            if my_balance < floor_price:
-                logging.warning(f"💸 NFT #{idx}: недостаточно средств ({my_balance} < {floor_price})")
-                continue
-
-            # Размещение оффера
             if first_offer_time is None:
                 first_offer_time = time.time()
                 logging.info("⏱️  🚀 ТАЙМЕР ЗАПУЩЕН!")
+
+            if my_balance < floor_price:
+                logging.warning(f"💸 NFT #{idx}: недостаточно средств ({my_balance} < {floor_price})")
+                continue
 
             payload = {
                 "offer": {
